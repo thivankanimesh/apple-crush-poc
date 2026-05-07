@@ -1,0 +1,85 @@
+# Dependencies
+node_modules/
+jspm_packages/
+.pnp
+.pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Environment variables / secrets
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+*.pem
+*.key
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime / process data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage and test output
+coverage/
+*.lcov
+.nyc_output/
+.jest/
+
+# Build output
+dist/
+build/
+out/
+.tmp/
+tmp/
+
+# Caches
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.rollup.cache/
+.turbo/
+.next/
+.nuxt/
+.svelte-kit/
+.vite/
+
+# Project-specific: generated/uploaded media and temp files
+uploads/
+generated/
+output/
+public/uploads/
+*.tmp
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Misc
+.history/
+.serverless/
+.fusebox/
+.dynamodb/
