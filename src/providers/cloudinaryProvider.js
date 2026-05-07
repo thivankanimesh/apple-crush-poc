@@ -58,7 +58,7 @@ async function uploadWithTransformation(imageUrl, transformation) {
 export async function preprocessWithCloudinary(imageUrl) {
   return uploadWithTransformation(
     imageUrl,
-    "c_limit,w_3000,h_3000,a_auto,q_auto,f_auto,fl_strip_profile,e_improve:outdoor",
+    "c_limit,w_3000,h_3000,q_auto,f_auto,fl_strip_profile,e_improve:outdoor",
   );
 }
 
