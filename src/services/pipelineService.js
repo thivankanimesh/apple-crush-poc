@@ -2,16 +2,14 @@ import { config } from "../config.js";
 import { buildAdaptiveRecipe } from "./adaptiveRouting.js";
 import { scoreImageFromUrl } from "./qualityScoring.js";
 import {
+  deartifactDenoiseDeblurWithCloudinary,
   deliverWithCloudinary,
+  faceEnhanceWithCloudinary,
+  hdrToneColorWithCloudinary,
+  naturalnessSharpenWithCloudinary,
   preprocessWithCloudinary,
+  upscaleWithCloudinary,
 } from "../providers/cloudinaryProvider.js";
-import {
-  deartifactDenoiseDeblurFal,
-  naturalnessSharpenFal,
-  upscaleFal,
-} from "../providers/falProvider.js";
-import { hdrToneColorStability } from "../providers/stabilityProvider.js";
-import { faceEnhanceReplicateCodeFormer } from "../providers/replicateProvider.js";
 
 async function runStep(stepName, fn, currentUrl, stepsLog) {
   const startedAt = Date.now();
@@ -62,40 +60,40 @@ export async function runPipeline({
   }
   if (recipe.steps.deartifactDenoiseDeblur) {
     workingUrl = await runStep(
-      "deartifact_denoise_deblur_fal",
-      deartifactDenoiseDeblurFal,
+      "deartifact_denoise_deblur_cloudinary",
+      deartifactDenoiseDeblurWithCloudinary,
       workingUrl,
       steps,
     );
   }
   if (recipe.steps.upscale) {
     workingUrl = await runStep(
-      "upscale_fal",
-      (url) => upscaleFal(url, recipe.params.upscaleFactor),
+      "upscale_cloudinary",
+      (url) => upscaleWithCloudinary(url, recipe.params.upscaleFactor),
       workingUrl,
       steps,
     );
   }
   if (recipe.steps.hdrToneColor) {
     workingUrl = await runStep(
-      "hdr_tone_color_stability",
-      (url) => hdrToneColorStability(url, recipe.params.toneStrength),
+      "hdr_tone_color_cloudinary",
+      (url) => hdrToneColorWithCloudinary(url, recipe.params.toneStrength),
       workingUrl,
       steps,
     );
   }
   if (recipe.steps.faceEnhance) {
     workingUrl = await runStep(
-      "face_enhance_replicate_codeformer",
-      faceEnhanceReplicateCodeFormer,
+      "face_enhance_cloudinary",
+      faceEnhanceWithCloudinary,
       workingUrl,
       steps,
     );
   }
   if (recipe.steps.naturalnessSharpen) {
     workingUrl = await runStep(
-      "naturalness_sharpen_fal",
-      (url) => naturalnessSharpenFal(url, recipe.params.sharpenStrength),
+      "naturalness_sharpen_cloudinary",
+      (url) => naturalnessSharpenWithCloudinary(url, recipe.params.sharpenStrength),
       workingUrl,
       steps,
     );

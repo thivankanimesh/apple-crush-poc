@@ -4,22 +4,22 @@ function round2(n) {
 
 const COST = {
   preprocessCloudinary: 0.002,
-  deartifactDenoiseDeblurFal: 0.045,
-  upscaleFal: 0.06,
-  hdrColorStability: 0.04,
-  faceEnhanceReplicate: 0.05,
-  naturalnessSharpenFal: 0.025,
+  deartifactDenoiseDeblurCloudinary: 0.008,
+  upscaleCloudinary: 0.012,
+  hdrColorCloudinary: 0.01,
+  faceEnhanceCloudinary: 0.009,
+  naturalnessSharpenCloudinary: 0.006,
   deliveryCloudinary: 0.003,
 };
 
 function estimateCost(recipe) {
   let total = 0;
   if (recipe.steps.preprocess) total += COST.preprocessCloudinary;
-  if (recipe.steps.deartifactDenoiseDeblur) total += COST.deartifactDenoiseDeblurFal;
-  if (recipe.steps.upscale) total += COST.upscaleFal;
-  if (recipe.steps.hdrToneColor) total += COST.hdrColorStability;
-  if (recipe.steps.faceEnhance) total += COST.faceEnhanceReplicate;
-  if (recipe.steps.naturalnessSharpen) total += COST.naturalnessSharpenFal;
+  if (recipe.steps.deartifactDenoiseDeblur) total += COST.deartifactDenoiseDeblurCloudinary;
+  if (recipe.steps.upscale) total += COST.upscaleCloudinary;
+  if (recipe.steps.hdrToneColor) total += COST.hdrColorCloudinary;
+  if (recipe.steps.faceEnhance) total += COST.faceEnhanceCloudinary;
+  if (recipe.steps.naturalnessSharpen) total += COST.naturalnessSharpenCloudinary;
   if (recipe.steps.delivery) total += COST.deliveryCloudinary;
   return round2(total);
 }
